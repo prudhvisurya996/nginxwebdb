@@ -57,7 +57,7 @@ app.post('/register', (req, res) => {
    if (err) {  
     res.status(400).send({ success: false, message: 'Registration failed!' });  
    } else {  
-    res.send({ success: true, message: 'Registration successful! Redirecting to login...', , redirect: '/login'  });
+    res.send({ success: true, message: 'Registration successful! Redirecting to login...', redirect: '/login'  });
    }  
   });  
 });  
