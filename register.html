@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="logregforg.css">
+   
+</head>
+<body>
+ 
+	<form id="registration-form">
+        <h1>Registration</h1>
+        
+        <label for="first-name">Enter your Name:</label>
+        <input type="text" id="first-name" name="firstName"  class="form-control" required>   
+       
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" class="form-control"  required>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" minlength="8" class="form-control" required>
+
+        <button type="submit" id="register-btn">Register</button>
+    </form>
+    </div>
+        <marquee behavior="scroll" direction="left" scrollamount="20">
+      Please go through the TERMS and Conditions  on the homepage before registering!
+    </marquee>
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('first-name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ firstName, email, password })
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = '/login';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch((err) => console.error('Error:', err));
+        });
+    </script>
+</body>
+</html>

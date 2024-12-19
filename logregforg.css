@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+form {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-bottom: 20px; /* Add more space between forgot password and login button */
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+    @keyframes scroll-left {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); }
+    
+}
+  .registration-form  .form-control {
+      display: block;
+      margin: 20px auto;
+    }
+    marquee {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      position: fixed; /* Fixes the marquee to the bottom */
+      bottom: 0; /* Positions it at the bottom of the viewport */
+      left: 0;
+      width: 100%; /* Makes it full width */
+      z-index: 1000; /* Ensures it appears above other content */
+    }
