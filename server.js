@@ -38,10 +38,11 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '/register.html'));
 });
 
-// Serve the payment.html file
-app.get('/payment', (req, res) => {
-  res.sendFile(path.join(__dirname, '/payment.html'));
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '/login.html'));
 });
+
+
 
 // Serve the homepage.html file
 app.get('/homepage', (req, res) => {
@@ -56,7 +57,7 @@ app.post('/register', (req, res) => {
    if (err) {  
     res.status(400).send({ success: false, message: 'Registration failed!' });  
    } else {  
-    res.send({ success: true, message: 'Registration successful! Redirecting to payment...' });
+    res.send({ success: true, message: 'Registration successful! Redirecting to login...', , redirect: '/login'  });
    }  
   });  
 });  
@@ -70,7 +71,7 @@ app.post('/login', (req, res) => {
    res.status(401).send({ success: false, message: 'Invalid credentials!' });  
   } else {  
    req.session.user = results[0];  
-   res.send({ success: true, message: 'Login successful! Redirecting to payment...', redirect: '/payment' });  
+   res.send({ success: true, message: 'Login successful! Redirecting to payment...', redirect: '/homepage' });  
   }  
   });  
 });  
