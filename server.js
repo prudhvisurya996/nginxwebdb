@@ -6,9 +6,9 @@ const mysql = require('mysql');
 const path = require('path'); // For handling file paths
 
 const db = mysql.createConnection({  
-  host: 'database-1.c9y6egwuyl8s.eu-north-1.rds.amazonaws.com',  
-  user: 'admin',  
-  password: 'Singham11',  
+  host: '',  
+  user: '',  
+  password: '',  
   database: 'users'  
 });  
 
