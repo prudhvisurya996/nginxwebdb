@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 
 // Serve the homepage.html file
 app.get('/homepage', (req, res) => {
-  res.sendFile('homepage.html', { root: path.join(__dirname, 'public') });
+  res.sendFile('Homepage.html', { root: path.join(__dirname, 'public') });
 });
 
 // Registration endpoint
@@ -68,7 +68,7 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {  
   const { email, password } = req.body;  
   const query = `SELECT * FROM users WHERE email = ? AND password = ?`;  
-  db.query(query, [username, password], (err, results) => {  
+  db.query(query, [email, password], (err, results) => {  
   if (err || results.length === 0) {  
    res.status(401).send({ success: false, message: 'Invalid credentials!' });  
   } else {  
