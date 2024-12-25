@@ -1,6 +1,8 @@
 # nginxwebdb
 nginxwebdb
 
+sh install.sh
+
 sudo apt install mysql-client-core-8.0 -y
 
 mysql -h database-1.c9y6egwuyl8s.eu-north-1.rds.amazonaws.com -u admin -p
