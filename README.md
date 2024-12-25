@@ -9,3 +9,8 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+docker build -t surya:v1 .
+docker run  --name nodejs-app -d -p 3000:3000 nodejs-project
+
