@@ -1,5 +1,3 @@
-# nginxwebdb
-nginxwebdb
 
 sh install.sh
 
@@ -10,6 +8,8 @@ mysql -h database-1.c9y6egwuyl8s.eu-north-1.rds.amazonaws.com -u admin -p
 mysql -h rdsendpoint -u admin -p
 
 create database users;
+
+use users;
 
 
 CREATE TABLE users (
