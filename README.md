@@ -23,9 +23,13 @@ CREATE TABLE users (
 
 docker build -t surya:v1 .
 docker run  --name nodejs-app -d -p 3000:3000 nodejs-project
+https://login.docker.com/activate
 
 docker login
+
 docker login -u username -p
+
 docker tag localimage:version username/reponame:tagname
+
 docker push 
 
