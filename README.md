@@ -33,3 +33,7 @@ docker tag localimage:version username/reponame:tagname
 
 docker push 
 
+
+docker run --name sonar -d -p 9000:9000 sonarqube:latest
+
+
