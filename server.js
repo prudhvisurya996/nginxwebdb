@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');  
 const mysql = require('mysql');  
 const path = require('path'); // For handling file paths
-const scanner = require('sonarqube-scanner'); // SonarScanner
+
 
 // MySQL Database Configuration
 const db = mysql.createConnection({  
@@ -78,31 +78,6 @@ app.get('/protected-page', (req, res) => {
   }  
 });
 
-// SonarScanner Integration
-const runSonarScanner = () => {
-  scanner(
-    {
-      serverUrl: "http://localhost:9000", // SonarQube server URL
-      token: "your_sonar_token", // Replace with your token
-      options: {
-        "sonar.projectKey": "nodejs-project",
-        "sonar.sources": ".",
-        "sonar.exclusions": "node_modules/**,coverage/**",
-        "sonar.language": "js",
-        "sonar.javascript.lcov.reportPaths": "coverage/lcov.info" // If using coverage
-      }
-    },
-    () => {
-      console.log("SonarScanner completed.");
-    }
-  );
-};
-
-// Route to trigger SonarScanner
-app.get('/run-sonar', (req, res) => {
-  runSonarScanner();
-  res.send('SonarScanner initiated. Check logs for details.');
-});
 
 // Start the server
 app.listen(3000, () => {  
