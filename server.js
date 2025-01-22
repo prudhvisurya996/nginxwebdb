@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');  
 const mysql = require('mysql');  
 const path = require('path'); // For handling file paths
-
+//Adding this line as codechange in branch1
 
 // MySQL Database Configuration
 const db = mysql.createConnection({  
