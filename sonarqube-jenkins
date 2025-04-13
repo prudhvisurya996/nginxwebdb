@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'Nodejs18' // Make sure this tool name matches what's configured in Jenkins
+    }
+
+    environment {
+        SONAR_SCANNER = tool 'sonar-scanner'     // Must match the name in Jenkins Global Tool Config
+        SONARQUBE_SERVER = 'sonar-server'        // Must match the SonarQube server name in Jenkins
+    }
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[url: 'https://github.com/prudhvisurya996/nginxwebdb.git']]
+                )
+            }
+        }
+
+        stage('Install Packages') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Code Analysis with SonarQube') {
+            steps {
+                withSonarQubeEnv("${SONARQUBE_SERVER}") {
+                    sh '''
+                        ${SONAR_SCANNER}/bin/sonar-scanner \
+                        -Dsonar.projectKey=nginxwebdb \
+                        -Dsonar.projectName=nginxwebdb-node \
+                        -Dsonar.projectVersion=1.0 \
+                        -Dsonar.sources=. \
+                        -Dsonar.exclusions=node_modules/** \
+                        '''
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+}
