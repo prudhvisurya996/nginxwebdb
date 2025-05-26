@@ -16,3 +16,34 @@ Environment=NODE_ENV=production
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+
+
+Userdata of launch template
+
+#!/bin/bash
+
+cat <<EOF > /etc/systemd/system/nodeapp.service
+[Unit]
+Description=Node.js App
+After=network.target
+
+[Service]
+WorkingDirectory=/root/nginxwebdb
+ExecStart=/usr/bin/npm start
+Restart=always
+User=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reexec
+systemctl daemon-reload
+systemctl enable nodeapp
+systemctl start nodeapp
+
