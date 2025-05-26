@@ -80,6 +80,8 @@ app.get('/protected-page', (req, res) => {
 
 
 // Start the server
-app.listen(3000, () => {  
-  console.log('Server listening on port 3000');  
+// Start the server and listen on all interfaces
+app.listen(3000, '0.0.0.0', () => {
+  console.log('Server listening on port 3000');
 });
+
