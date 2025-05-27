@@ -1,40 +1,17 @@
 sudo nano /etc/systemd/system/nodeapp.service
-
-
-
-[Unit]
-Description=Node.js App
-After=network.target
-
-[Service]
-WorkingDirectory=/root/nginxwebdb
-ExecStart=/usr/bin/npm start
-Restart=always
-User=root
-Environment=PATH=/usr/bin:/usr/local/bin
-Environment=NODE_ENV=production
-
-[Install]
-WantedBy=multi-user.target
-
-
-
-
-
-Userdata of launch template
-
 #!/bin/bash
 
+# Create systemd service file
 cat <<EOF > /etc/systemd/system/nodeapp.service
 [Unit]
 Description=Node.js App
 After=network.target
 
 [Service]
-WorkingDirectory=/root/nginxwebdb
+WorkingDirectory=/home/ubuntu/nginxwebdb
 ExecStart=/usr/bin/npm start
 Restart=always
-User=root
+User=ubuntu
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
 
@@ -42,8 +19,14 @@ Environment=NODE_ENV=production
 WantedBy=multi-user.target
 EOF
 
-systemctl daemon-reexec
+# Set ownership (ensure ubuntu owns the app directory)
+chown -R ubuntu:ubuntu /home/ubuntu/nginxwebdb
+
+# Reload systemd, enable, and start the service
 systemctl daemon-reload
 systemctl enable nodeapp
 systemctl start nodeapp
+
+
+
 
